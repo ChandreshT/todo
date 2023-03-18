@@ -9,9 +9,32 @@ const Todo = () => {
 
   const addItem = (e) => {
     e.preventDefault();
-    const newTask = { name: inputData, id: Math.random() };
-    setItems([...items, newTask]);
+    if (inputData === "") {
+      alert("Please enter task first");
+      return;
+    }
+    if (!toggle) {
+      setItems([...items, { name: inputData, id: Math.random() }]);
+    } else {
+      setItems(
+        items.map((item) =>
+          item.id === editIndex ? { ...item, name: inputData } : item
+        )
+      );
+      setEditIndex(0);
+      setToggle(false);
+    }
     setInputData("");
+  };
+
+  const editItem = (data) => {
+    setInputData(data.name);
+    setToggle(true);
+    setEditIndex(data.id);
+  };
+
+  const deleteItem = (data) => {
+    setItems(items.filter((item) => item.id !== data.id));
   };
 
   return (
@@ -39,22 +62,26 @@ const Todo = () => {
                 <div className="eachItem" key={item.id}>
                   <h3>{item.name}</h3>
                   <div className="todo-btn">
-                    <i className="far fa-edit add-btn" onClick={null}></i>
-                    <i className="far fa-trash-alt add-btn" onClick={null}></i>
+                    <i
+                      className="far fa-edit add-btn"
+                      onClick={() => editItem(item)}
+                    ></i>
+                    <i
+                      className="far fa-trash-alt add-btn"
+                      onClick={() => deleteItem(item)}
+                    ></i>
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className="showItems">
-            <button
-              className="btn effect04"
-              data-sm-link-text="Remove All"
-              onClick={null}
-            >
-              <span>Check List</span>
-            </button>
-          </div>
+          {items.length > 0 && (
+            <div className="showItems">
+              <button className="btn" onClick={() => setItems([])}>
+                <span>Clear Task</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
