@@ -47,7 +47,6 @@ html {
 }
 
 input {
-  /* display: block; */
   min-width: 40rem;
   height: 3.4rem;
   padding: 2rem 1.2rem;
@@ -123,7 +122,7 @@ input:focus {
   margin-left: 1rem;
   min-width: 40rem;
   word-break: break-word;
-  background: rgb(85, 41, 220);
+  background: #4447fd;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +130,7 @@ input:focus {
 
 .eachItem:hover {
   background: rgb(249, 249, 252);
-  color: rgb(85, 41, 220);
+  color: #4447fd;
 }
 
 .showItems .eachItem h3 {
@@ -142,7 +141,6 @@ input:focus {
 
 .fa-trash-alt,
 .fa-edit {
-  /* margin-left: -2.5rem; */
   cursor: pointer;
   pointer-events: auto;
   z-index: 10;
@@ -169,24 +167,22 @@ input:focus {
 }
 
 .eachItem:hover h3 {
-  color: rgb(85, 41, 220);
+  color: #4447fd;
 }
 
 .btn {
-  letter-spacing: 0.1em;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 45px;
   max-width: 160px;
   position: relative;
   border-radius: 4px;
   text-decoration: none;
-  text-transform: uppercase;
+  padding: 10px 16px;
   width: 100%;
+  border: none;
 }
 .btn:hover {
   text-decoration: none;
-  background-color: rgb(85, 41, 220);
+  background-color: #4447fd;
   color: #fff;
 }

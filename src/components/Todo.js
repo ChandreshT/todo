@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./Todo.css";
 
+const getLocal = () => {
+  const tasks = localStorage.getItem("tasks");
+  if (tasks) {
+    return JSON.parse(tasks);
+  } else {
+    return [];
+  }
+};
+
 const Todo = () => {
   const [inputData, setInputData] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(getLocal());
   const [editIndex, setEditIndex] = useState(0);
   const [toggle, setToggle] = useState(false);
 
@@ -25,6 +34,7 @@ const Todo = () => {
       setToggle(false);
     }
     setInputData("");
+    localStorage.setItem("task", items);
   };
 
   const editItem = (data) => {
@@ -36,6 +46,10 @@ const Todo = () => {
   const deleteItem = (data) => {
     setItems(items.filter((item) => item.id !== data.id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(items));
+  }, [items]);
 
   return (
     <>
